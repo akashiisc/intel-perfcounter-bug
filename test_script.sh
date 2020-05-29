@@ -15,7 +15,7 @@ NUMACTLEXTRA=""
 BENCHMARK_CPU1=$SOURCE/binaries/bin_sharedmem-set
 BENCHMARK_CPU2=$SOURCE/binaries/bin_sharedmem-get
 
-PERF=/home/akash/perf_5.4
+PERF=perf
 #########################################################################################################
 # Error Functions
 #########################################################################################################
