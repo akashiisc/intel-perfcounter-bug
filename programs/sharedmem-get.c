@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-#define STORAGE_ID "/SHM_TEST"
+#define STORAGE_ID "/SHM_TEST_1"
 #define NUM_PAGES 2000000
 
 int main(int argc, char *argv[])

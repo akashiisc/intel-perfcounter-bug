@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-#define STORAGE_ID "/SHM_TEST"
+#define STORAGE_ID "/SHM_TEST_1"
 #define NUM_PAGES 2000000 
 
 #define DOMADVISE 0
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     int len;
     int *addr;
 
-
+    fd = shm_unlink(STORAGE_ID);
     unsigned long size = NUM_PAGES *  1024 * sizeof(int);
     fd = shm_open(STORAGE_ID, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
     if (fd == -1)
