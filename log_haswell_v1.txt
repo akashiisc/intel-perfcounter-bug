@@ -1,0 +1,74 @@
+vtune -collect memory-access --cpu-mask=0 -r log_haswell_v1 -- numactl --physcpubind=0 --membind=0 binaries/bin_sharedmem-set
+vtune: Warning: Due to hardware limitations some of the metrics will not be available on this platform when Intel Hyper-Threading Technology is on. Consider disabling the Hyper-Threading option in the BIOS before running the analysis.
+vtune: Warning: To profile kernel modules during the session, make sure they are available in the /lib/modules/kernel_version/ location.
+vtune: Peak bandwidth measurement started.
+vtune: Peak bandwidth measurement finished.
+vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /home/ashish/intel/intel-perfcounter-bug/log_haswell_v1 -command stop.
+Data populated
+Access started
+Time taken : 250
+Sum : 1004721307381543680vtune: Collection stopped.
+vtune: Using result path `/home/ashish/intel/intel-perfcounter-bug/log_haswell_v1'
+vtune: Executing actions 19 % Resolving information for `bin_sharedmem-set'    
+vtune: Warning: Cannot locate file `/dev/shm/SHM_TEST_1'.
+vtune: Warning: Cannot locate debugging information for file `/home/ashish/intel/intel-perfcounter-bug/binaries/bin_sharedmem-set'.
+vtune: Executing actions 21 % Resolving information for `vmlinux'              
+vtune: Warning: Cannot locate debugging information for the Linux kernel. Source-level analysis will not be possible. Function-level analysis will be limited to kernel symbol tables. See the Enabling Linux Kernel Analysis topic in the product online help for instructions.
+vtune: Executing actions 75 % Generating a report                              Elapsed Time: 372.126s
+    CPU Time: 261.158s
+    Memory Bound: 67.9% of Pipeline Slots
+     | The metric value is high. This may indicate that a significant fraction
+     | of execution pipeline slots could be stalled due to demand memory load
+     | and stores. Explore the metric breakdown by memory hierarchy, memory
+     | bandwidth information, and correlation by memory objects.
+     |
+        L1 Bound: 0.0% of Clockticks
+        L3 Latency: 0.3% of Clockticks
+        DRAM Bound
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            Local DRAM: 51.1% of Clockticks
+             | The number of CPU stalls on loads from the local memory exceeds
+             | the threshold. Consider caching data to improve the latency and
+             | increase the performance.
+             |
+            Remote DRAM: 0.0% of Clockticks
+            Remote Cache: 0.0% of Clockticks
+        Store Bound: 1.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+        QPI Bandwidth Bound: 0.0% of Elapsed Time
+    Loads: 110,693,609,370
+    Stores: 18,545,238,060
+    LLC Miss Count: 1,843,517,730
+        Local DRAM Access Count: 1,609,638,615
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 42
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain                  Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
+--------------------------------  ----------------  ----------------  -------  ---------------------------------------------
+DRAM, GB/sec                      160                          3.500    0.000                                           0.0%
+DRAM Single-Package, GB/sec       40                           3.500    0.862                                           0.0%
+QPI Outgoing Single-Link, GB/sec  16                           1.800    0.051                                           0.0%
+QPI Outgoing, GB/sec              136                          1.800    0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: numactl "--physcpubind=0" "--membind=0" "binaries/bin_sharedmem-set" 
+    Operating System: 5.0.0-test+ NAME="Ubuntu" VERSION="18.04.1 LTS (Bionic Beaver)" ID=ubuntu ID_LIKE=debian PRETTY_NAME="Ubuntu 18.04.1 LTS" VERSION_ID="18.04" HOME_URL="https://www.ubuntu.com/" SUPPORT_URL="https://help.ubuntu.com/" BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/" PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy" VERSION_CODENAME=bionic UBUNTU_CODENAME=bionic
+    Computer Name: w2-haas01-esx1039
+    Result Size: 337 MB 
+    Collection start time: 12:51:07 29/06/2020 UTC
+    Collection stop time: 12:57:19 29/06/2020 UTC
+    Collector Type: Driverless Perf system-wide sampling
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.195 GHz 
+        Logical CPU Count: 112
+        Max DRAM Single-Package Bandwidth: 40.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.
+vtune: Executing actions 100 % done
