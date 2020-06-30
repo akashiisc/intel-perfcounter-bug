@@ -1,0 +1,74 @@
+vtune: Peak bandwidth measurement started.
+vtune: Peak bandwidth measurement finished.
+vtune: Warning: To enable hardware event-base sampling, VTune Profiler has disabled the NMI watchdog timer. The watchdog timer will be re-enabled after collection completes.
+vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /home/akash/temp/intel-perfcounter-bug/skylake_logs -command stop.
+Data populated
+Access started
+Time taken : 202
+Sum : 1004721307381543680vtune: Collection stopped.
+vtune: Using result path `/home/akash/temp/intel-perfcounter-bug/skylake_logs'
+vtune: Executing actions 19 % Resolving information for `bin_sharedmem-set'    
+vtune: Warning: Cannot locate debugging information for file `/home/akash/temp/intel-perfcounter-bug/binaries/bin_sharedmem-set'.
+vtune: Executing actions 20 % Resolving information for `libc-2.23.so'         
+vtune: Warning: Cannot locate file `sep5.ko'.
+vtune: Executing actions 22 % Resolving information for `vmlinux'              
+vtune: Warning: Cannot locate debugging information for the Linux kernel. Source-level analysis will not be possible. Function-level analysis will be limited to kernel symbol tables. See the Enabling Linux Kernel Analysis topic in the product online help for instructions.
+vtune: Executing actions 75 % Generating a report                              Elapsed Time: 319.699s
+    CPU Time: 208.597s
+    Memory Bound: 82.1% of Pipeline Slots
+     | The metric value is high. This may indicate that a significant fraction
+     | of execution pipeline slots could be stalled due to demand memory load
+     | and stores. Explore the metric breakdown by memory hierarchy, memory
+     | bandwidth information, and correlation by memory objects.
+     |
+        L1 Bound: 2.4% of Clockticks
+        L2 Bound: 0.5% of Clockticks
+        L3 Bound: 10.5% of Clockticks
+         | This metric shows how often CPU was stalled on L3 cache, or contended
+         | with a sibling Core. Avoiding cache misses (L2 misses/L3 hits)
+         | improves the latency and increases performance.
+         |
+        DRAM Bound: 70.3% of Clockticks
+         | This metric shows how often CPU was stalled on the main memory
+         | (DRAM). Caching typically improves the latency and increases
+         | performance.
+         |
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+        Store Bound: 0.2% of Clockticks
+        NUMA: % of Remote Accesses: 45.8%
+         | A significant amount of DRAM loads were serviced from remote DRAM.
+         | Wherever possible, try to consistently use data on the same core, or
+         | at least the same package, as it was allocated on.
+         |
+        UPI Utilization Bound: 0.0% of Elapsed Time
+    Loads: 73,646,209,320
+    Stores: 35,318,559,525
+    LLC Miss Count: 2,040,142,800
+        Local DRAM Access Count: 1,088,076,160
+        Remote DRAM Access Count: 918,064,260
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 59
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain                  Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
+--------------------------------  ----------------  ----------------  -------  ---------------------------------------------
+DRAM, GB/sec                      222                          7.100    0.002                                           0.0%
+DRAM Single-Package, GB/sec       111                          6.900    1.858                                           0.0%
+UPI Utilization Single-link, (%)  100                          8.200    1.293                                           0.0%
+Collection and Platform Info
+    Application Command Line: numactl "--physcpubind=0" "--membind=0" "binaries/bin_sharedmem-set" 
+    User Name: root
+    Operating System: 4.19.90 NAME="Ubuntu" VERSION="16.04.6 LTS (Xenial Xerus)" ID=ubuntu ID_LIKE=debian PRETTY_NAME="Ubuntu 16.04.6 LTS" VERSION_ID="16.04" HOME_URL="http://www.ubuntu.com/" SUPPORT_URL="http://help.ubuntu.com/" BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/" VERSION_CODENAME=xenial UBUNTU_CODENAME=xenial
+    Computer Name: chisel1
+    Result Size: 189 MB 
+    Collection start time: 15:19:16 30/06/2020 UTC
+    Collection stop time: 15:24:36 30/06/2020 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Skylake
+        Frequency: 2.300 GHz 
+        Logical CPU Count: 72
+        Max DRAM Single-Package Bandwidth: 111.000 GB/s
+
